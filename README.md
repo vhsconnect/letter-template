@@ -1,57 +1,19 @@
-# Nix configuration for building LaTeX documents
+### A template and toolset for generating letters with latex and nix flakes
 
-This repository contains instructions and a `nix` setup needed for building
-`LaTeX` documents in a reproducible manner.
-
-## Getting started
-
-In the directory where the LaTeX document can be found run:
+Drop in to the shell:
 
 ```shell
-niv init
+nix develop -c bash
 ```
 
-After that copy `default.nix` and `Makefile`, and adapt it to your liking. You
-will probably want to change `DOCNAME` in the `Makefile`, and `name` and
-`description` in `default.nix`.
-
-## Building LaTeX documents
-
-To build the latex document run:
+Preview the cover letter as you make changes to the document
 
 ```shell
-nix-shell --run make
+make preview
 ```
 
-The document can be built using `nix-build`. After running this command look
-inside the `result` directory.
-
-For a continuous compilation of the `LaTeX` file run:
+Or Just compile it once you're done
 
 ```shell
-nix-shell --run "make watch"
+make
 ```
-
-## Adding packages
-
-Most likely you will need other `LaTeX` packages. These can be added in the
-`default.nix` file.
-
-Note that when adding a new package, it might be necessary to run:
-
-```shell
-nix-shell --run "make clean"
-```
-
-## Managing versions using niv
-
-The first step towards reproducible builds is specifying which package versions
-we need. This process is greatly simplified by
-[`niv`](https://github.com/nmattia/niv). Make sure you install it using nix to
-manage the `nixpkgs` versions as well as other sources you need to pin.
-
-## Improve your workflow further by using lorri
-
-If you install and configure [`lorri`](https://github.com/target/lorri) then it
-is not necessary to use the `nix-shell` command, and one can use `make`
-directly. See the project documentation for details on how to use it.
